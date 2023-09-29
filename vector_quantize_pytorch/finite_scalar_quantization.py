@@ -40,7 +40,7 @@ class FSQ(nn.Module):
         return (z + shift).tanh() * half_l - offset
 
     def quantize(self, z: torch.Tensor) -> torch.Tensor:
-        """Quanitzes z, returns quantized zhat, same shape as z."""
+        """Quantizes z, returns quantized zhat, same shape as z."""
         quantized = round_ste(self.bound(z))
         half_width = self._levels // 2 # Renormalize to [-1, 1].
         return quantized / half_width
